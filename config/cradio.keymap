@@ -6,8 +6,20 @@
 #include <dt-bindings/zmk/bt.h>
 
 // Home row mods macro
-#define HRML(k1,k2,k3,k4) &ht LSHFT k1  &ht LALT k2  &ht LCTRL k3  &ht LGUI k4
-#define HRMR(k1,k2,k3,k4) &ht RGUI k1  &ht RCTRL k2  &ht RALT k3  &ht RSHFT k4
+#define HRML(k1,k2,k3,k4) &ht LGUI k1  &ht LALT k2  &ht LCTRL k3  &ht LSHFT k4
+#define HRMR(k1,k2,k3,k4) &ht RSHFT k1  &ht RCTRL k2  &ht RALT k3  &ht RGUI k4
+
+/*
+╭─────┬─────┬─────┬─────┬─────╮   ╭─────┬─────┬─────┬─────┬─────╮
+│  0  │  1  │  2  │  3  │  4  │   │  5  │  6  │  7  │  8  │  9  │
+├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
+│ 10  │ 11  │ 12  │ 13  │ 14  │   │ 15  │ 16  │ 17  │ 18  │ 19  │
+├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
+│ 20  │ 21  │ 22  │ 23  │ 24  │   │ 25  │ 26  │ 27  │ 28  │ 29  │
+╰─────┴─────┴─────┼─────┼─────┤   ├─────┼─────┼─────┴─────┴─────╯
+                   │ 30  │ 31  │   │ 32  │ 33  │
+                   ╰─────┴─────╯   ╰─────┴─────╯
+*/
 
 / {
     behaviors {
@@ -44,12 +56,12 @@
         //│  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , <      │ . >      │ / ?      │
             &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                            &lt 2 TAB   &kp BSPC     &kp SPACE  &lt 1 ENTER
+                                            &lt 1 TAB   &kp BSPC     &kp SPACE  &lt 2 ENTER
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
 
-        right_layer {
+        left_layer {
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         //│ INSERT   │  1       │  2       │  3       │          │   │ HOME     │ PAGE DN  │ PAGE UP  │ END      │  :       │
@@ -61,12 +73,12 @@
         //│ CAPS     │  7       │  8       │  9       │  0       │   │          │          │          │          │          │
            &caps_word  &kp N7     &kp N8     &kp N9     &kp N0         &trans     &trans     &trans     &trans     &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &kp ESC        &trans     &trans
+                                             &trans     &trans        &kp ESC    &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
 
-        left_layer {
+        right_layer {
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         //│          │  [       │  {       │  }       │          │   │  ^       │  (       │  )       │  ]       │  ~       │
@@ -92,8 +104,8 @@
         //│BOOTLOADER│          │          │          │PROFILE 1 │   │          │          │          │          │BOOTLOADER│
           &bootloader  &trans     &trans     &trans    &bt BT_SEL 1    &trans     &trans     &trans     &trans    &bootloader
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ZMK UNLOCK│          │          │ CLEAR BT │PROFILE 2 │   │          │          │          │          │          │
-        &studio_unlock     &trans     &trans    &bt BT_CLR &bt BT_SEL 2    &trans     &trans     &trans     &trans     &trans
+        //│ZMK UNLOCK│          │          │ CLEAR BT │PROFILE 2 │   │          │          │          │          │ZMK UNLOCK|
+        &studio_unlock &trans     &trans    &bt BT_CLR &bt BT_SEL 2    &trans     &trans     &trans     &trans    &studio_unlock
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &trans         &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
