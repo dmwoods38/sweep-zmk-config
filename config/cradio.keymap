@@ -34,11 +34,20 @@
         };
     };
 
+    combos {
+        compatible = "zmk,combos";
+        combo_esc {
+            timeout-ms = <50>;
+            key-positions = <30 31>;
+            bindings = <&kp ESC>;
+        };
+    };
+
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
             if-layers = <1 2>;
-            then-layer = <3>;
+            then-layer = <4>;
         };
     };
 
@@ -61,24 +70,42 @@
             >;
         };
 
-        left_layer {
+        nav_layer {
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│ INSERT   │  1       │  2       │  3       │          │   │ HOME     │ PAGE DN  │ PAGE UP  │ END      │  :       │
-            &kp INS    &kp N1     &kp N2     &kp N3     &trans         &kp HOME   &kp PG_DN  &kp PG_UP  &kp END    &kp COLON
+        //│  PrtScrn │  F1      │  F2      │  F3      │    F10   │   │ HOME     │ PAGE DN  │ PAGE UP  │ END      │ INSERT   │
+            &kp PSCRN  &kp F1     &kp F2     &kp F3     &kp F10        &kp HOME   &kp PG_DN  &kp PG_UP  &kp END    &kp INS
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ DELETE   │  4       │  5       │  6       │          │   │ LEFT     │ DOWN     │ UP       │ RIGHT    │  ;       │
-            &kp DEL    &kp N4     &kp N5     &kp N6     &trans         &kp LEFT   &kp DOWN   &kp UP   &kp RIGHT   &kp SEMI
+        //│ Vol Up   │  F4      │  F5      │  F6      │  F11     │   │ LEFT     │ DOWN     │   UP     │  RIGHT   │   CAPS   │
+          HRML(C_VOL_UP,  F4,      F5,        F6)      &kp F11         &kp LEFT  HRMR(DOWN,    UP,       RIGHT,      CAPS)
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ CAPS     │  7       │  8       │  9       │  0       │   │          │          │          │          │          │
-           &caps_word  &kp N7     &kp N8     &kp N9     &kp N0         &trans     &trans     &trans     &trans     &trans
+        //│ Vol Down │  F7      │  F8      │  F9      │  F12     │   │          │          │          │          │          │
+         &kp C_VOL_DN  &kp F7     &kp F8     &kp F9     &kp F12         &trans    &trans     &trans     &trans     &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &trans        &kp ESC    &trans
+                                             &trans     &trans        &trans     &trans
+        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+            >;
+        };
+ 
+        num_layer {
+            bindings = <
+        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
+        //│    1/!   │   2/@    │    3/#   │   4/$    │  5/%     │   │  6/^     │  7/&     │  8/*     │  9/(     │  0/)     │
+            &kp N1     &kp N2     &kp N3     &kp N4    &kp N5         &kp N6     &kp N7     &kp N8     &kp N9     &kp N0
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│          │          │          │          │          │   │          │  -/_     │  =/+     │  \/|     │  `/~     │
+          HRML(&trans,  &trans,   &trans,    &trans)     &trans        &trans    HRMR(MINUS,    EQUAL,   BSLH,      GRAVE)
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│          │          │          │          │          │   │          │          │          │          │          │
+            &trans     &trans     &trans     &trans     &trans         &trans    &trans    &trans    &trans    &trans
+        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
+                                             &trans     &trans         &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
 
-        right_layer {
+//TODO Work on symbols
+        sym_layer {
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         //│          │  [       │  {       │  }       │          │   │  ^       │  (       │  )       │  ]       │  ~       │
@@ -95,7 +122,7 @@
             >;
         };
 
-        tri_layer {
+        feat_layer {
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         //│ RESET    │          │          │          │PROFILE 0 │   │          │          │          │          │  RESET   │
