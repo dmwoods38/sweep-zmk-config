@@ -85,7 +85,7 @@
           HRML(C_VOL_UP,  F4,      F5,        F6)      &kp F11         &kp LEFT  HRMR(DOWN,    UP,       RIGHT,      CAPS)
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│ Vol Down │  F7      │  F8      │  F9      │  F12     │   │          │          │          │          │          │
-         &kp C_VOL_DN  &kp F7     &kp F8     &kp F9     &kp F12         &trans    &trans     &trans     &trans     &trans
+         &kp C_VOL_DN  &kp F7     &kp F8     &kp F9     &kp F12       &caps_word    &trans     &trans     &trans     &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &trans        &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
